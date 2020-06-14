@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test dependency</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="assets/js/vue.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/css/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/theme.css">
+
+</head>
+
+<body>
+
+
+	<div class="calculator" id="app">
+		<div class="calculator-container">
+			<input class="calculator-screen" v-model="buffer" type="text"  value="0" disabled/>
+			<p class="display_info">{{ modeX }}</p>
+		</div>
+				<div class="calculator-keys">
+								<button @click="click">7</button>
+								<button @click="click">8</button>
+								<button @click="click">9</button>
+								<button @click="times">&times</button>
+								</br>
+								<button v-on:click="click">4</button>
+								<button v-on:click="click">5</button>
+								<button v-on:click="click">6</button>
+								<button v-on:click="minus">-</button>
+								</br>
+								<button v-on:click="click">1</button>
+								<button v-on:click="click">2</button>
+								<button v-on:click="click">3</button>
+								<button v-on:click="division">&divide;</button>
+								</br>
+
+								<button v-on:click="click">0</button>
+								<button v-on:click="click">.</button>
+								<button v-on:click="egal">=</button>
+								<button v-on:click="plus">+</button>
+
+								</br>
+								<button v-on:click="bin">BIN</button>
+								<button v-on:click="hex">HEX</button>
+								<button v-on:click="del">Del</button>
+								<button v-on:click="clr">CLR</button>
+			
+				</div>
+	</div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+
+	var hasOpWaiting = false ;
+	var pressCnt = 0;
+
+	var app = new Vue({
+		el:'#app',
+		data:{
+			result: '',
+			modeX : 'DEG',
+			buffer : '',
+			buffer_for_computation : '',
+			awaiting : '0',
+			op : ''
+		},
+
+		methods:{
+			
+			click : function (event){
+				let key = event.target.innerText;
+
+				if(hasOpWaiting){
+					app.buffer='';
+					hasOpWaiting=false; 
+				}
+
+				if(this.buffer.length<13 || !hasOpWaiting) {
+					this.buffer+= key;
+				}
+				
+
+			},
+
+			egal: function(){
+				_egal();
+			}, 
+
+			minus: function(){
+				_minus();
+			},
+
+			division: function(){
+				_divide();
+			},
+
+			times: function(){
+				_times();
+			},
+
+			plus: function(){
+				_plus();
+			},
+
+			del: function(){
+				_del();
+			},
+
+			bin: function(){
+				_bin();
+			},
+
+			hex: function(){
+				_hex();
+			},
+
+			clr: function(){
+				_clr();
+			}
+
+		}
+	});
+
+	function _plus(){
+		app.op = '+';
+
+		if(app.buffer.length > 1){ 
+
+			app.awaiting += app.buffer ;
+			app.buffer =eval(app.awaiting);
+		}
+			
+			app.result = app.buffer + '+';
+
+			if(!hasOpWaiting){
+				hasOpWaiting=true;
+			}
+	}
+
+	function _minus(){
+		app.op = '-'
+
+		if(app.buffer.length > 1){  
+				app.awaiting += app.buffer ;
+				app.buffer =eval(app.awaiting);
+
+			}
+		
+			app.result = app.buffer + '-';
+
+			if(!hasOpWaiting){
+				hasOpWaiting=true;
+			}
+	}
+
+	function _times(){
+
+		app.op = '*';
+
+		if(app.buffer.length > 1){  
+				app.awaiting += app.buffer ;
+				app.buffer =eval(app.awaiting);
+
+			}
+		
+			app.result = app.buffer + '*';
+
+			if(!hasOpWaiting){
+				hasOpWaiting=true;
+			}
+	}
+
+	function _divide(){
+		
+		app.op = '/';
+
+		if(app.buffer.length > 1){  
+				app.awaiting += app.buffer ;
+				app.buffer =eval(app.awaiting).toFixed(5);
+
+			}
+		
+			app.result = app.buffer + '/';
+
+			if(!hasOpWaiting){
+				hasOpWaiting=true;
+			}
+	}
+
+	function _hex(){
+		app.modeX = 'HEX';
+	}
+
+	function _bin(){
+		app.modeX = 'BIN';
+	}
+
+	function _del(){
+		let len = app.buffer.length;
+		if (len>0) {
+			 app.buffer = app.buffer.slice(0,len-1);
+		}
+	}
+
+	function _egal(){;
+
+		try{ //I used this methods to prevent error such that an invalid operation
+
+			if(app.op != null && app.buffer != ''){
+				
+				app.result +=app.buffer;
+				app.result = eval(app.result);
+				
+				if(app.op != '/') 
+					app.result = app.result;
+				else 
+					app.result = app.result.toFixed(5);
+
+				app.buffer = app.result;
+				app.awaiting = app.buffer + app.op;
+				app.op='';
+				hasOpWaiting=false;
+			}
+		}
+
+		catch(err){
+			app.buffer='invalid';
+			alert(err);
+			setTimeout(function() {
+				app.buffer='';
+				app.awaiting='';
+				hasOpWaiting=false;
+				app.op='';
+			},1000);
+			
+		}
+	}
+
+	function _clr(){
+		app.buffer='';
+		app.awaiting='';
+		hasOpWaiting=false;
+		app.op='';
+	}
+
+</script>
