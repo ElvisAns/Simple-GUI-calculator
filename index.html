@@ -1,111 +1,71 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            simple calculador
-        </title>
-        <meta content="width=device-width, initial-scale=1" name="viewport">
-            <script src="assets/js/vue.js" type="text/javascript">
-            </script>
-            <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-                <script src="assets/js/jquery.min.js" type="text/javascript">
-                </script>
-                <link href="assets/css/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-                    <link href="assets/css/theme.css" rel="stylesheet" type="text/css">
-                        <meta content="Simple calculatrice" property="og:title">
-                            <meta content="website" property="og:type">
-                                <meta content="246270049874183" property="fb:app_id">
-                                    <meta content="Un simple online tool for making calculation every where" property="og:description">
-                                        <meta content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcompass1.org%2Fresources%2Fcalculators%2F&psig=AOvVaw0iXGmiXfw66YpwdhbfEPiy&ust=1592191487552000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPDosI2tgOoCFQAAAAAdAAAAABAD" property="og:image">
-                                            <meta content="https://simplecalculador.netlify.app/" property="og:url">
-                                                <link href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcompass1.org%2Fresources%2Fcalculators%2F&psig=AOvVaw0iXGmiXfw66YpwdhbfEPiy&ust=1592191487552000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPDosI2tgOoCFQAAAAAdAAAAABAD" rel="shortcut icon">
-                                                </link>
-                                            </meta>
-                                        </meta>
-                                    </meta>
-                                </meta>
-                            </meta>
-                        </meta>
-                    </link>
-                </link>
-            </link>
-        </meta>
-    </head>
-    <body>
-        <div class="calculator" id="app">
-            <div class="calculator-container">
-                <input class="calculator-screen" disabled="" type="text" v-model="buffer" value="0"/>
-                <p class="display_info">
-                    {{ modeX }}
-                </p>
-            </div>
-            <div class="calculator-keys">
-                <button @click="click">
-                    7
-                </button>
-                <button @click="click">
-                    8
-                </button>
-                <button @click="click">
-                    9
-                </button>
-                <button @click="times">
-                    ×
-                </button>
-            </div>
-        </div>
-        <button v-on:click="click">
-            4
-        </button>
-        <button v-on:click="click">
-            5
-        </button>
-        <button v-on:click="click">
-            6
-        </button>
-        <button v-on:click="minus">
-            -
-        </button>
-        <button v-on:click="click">
-            1
-        </button>
-        <button v-on:click="click">
-            2
-        </button>
-        <button v-on:click="click">
-            3
-        </button>
-        <button v-on:click="division">
-            ÷
-        </button>
-        <button v-on:click="click">
-            0
-        </button>
-        <button v-on:click="click">
-            .
-        </button>
-        <button v-on:click="egal">
-            =
-        </button>
-        <button v-on:click="plus">
-            +
-        </button>
-        <button v-on:click="bin">
-            BIN
-        </button>
-        <button v-on:click="hex">
-            HEX
-        </button>
-        <button v-on:click="del">
-            Del
-        </button>
-        <button v-on:click="clr">
-            CLR
-        </button>
-    </body>
+<head>
+	<title>simple calculador</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="assets/js/vue.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/css/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/theme.css">
+	
+	<meta property="og:title" content="Simple calculatrice">
+	<meta property="og:type" content="website">
+	<meta property="fb:app_id" content="246270049874183">
+	<meta property="og:description" content="Un simple online tool for making calculation every where">
+	<meta property="og:image" content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcompass1.org%2Fresources%2Fcalculators%2F&psig=AOvVaw0iXGmiXfw66YpwdhbfEPiy&ust=1592191487552000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPDosI2tgOoCFQAAAAAdAAAAABAD">
+	<meta property="og:url" content="https://simplecalculador.netlify.app/">
+
+   	<link rel="shortcut icon"  href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcompass1.org%2Fresources%2Fcalculators%2F&psig=AOvVaw0iXGmiXfw66YpwdhbfEPiy&ust=1592191487552000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPDosI2tgOoCFQAAAAAdAAAAABAD">
+
+</head>
+
+<body>
+
+
+	<div class="calculator" id="app">
+		<div class="calculator-container">
+			<input class="calculator-screen" v-model="buffer" type="text"  value="0" disabled/>
+			<p class="display_info">{{ modeX }}</p>
+		</div>
+				<div class="calculator-keys">
+								<button @click="click">7</button>
+								<button @click="click">8</button>
+								<button @click="click">9</button>
+								<button @click="times">&times</button>
+								</br>
+								<button v-on:click="click">4</button>
+								<button v-on:click="click">5</button>
+								<button v-on:click="click">6</button>
+								<button v-on:click="minus">-</button>
+								</br>
+								<button v-on:click="click">1</button>
+								<button v-on:click="click">2</button>
+								<button v-on:click="click">3</button>
+								<button v-on:click="division">&divide;</button>
+								</br>
+
+								<button v-on:click="click">0</button>
+								<button v-on:click="click">.</button>
+								<button v-on:click="egal">=</button>
+								<button v-on:click="plus">+</button>
+
+								</br>
+								<button v-on:click="bin">BIN</button>
+								<button v-on:click="hex">HEX</button>
+								<button v-on:click="del">Del</button>
+								<button v-on:click="clr">CLR</button>
+			
+				</div>
+	</div>
+	
+</body>
 </html>
+
 <script type="text/javascript">
-    var hasOpWaiting = false ;
+
+
+	var hasOpWaiting = false ;
 	var pressCnt = 0;
 
 	var app = new Vue({
@@ -129,8 +89,7 @@
 					hasOpWaiting=false; 
 				}
 
-				if(this.buffer.length
-								<13 || !hasOpWaiting) {
+				if(this.buffer.length<13 || !hasOpWaiting) {
 					this.buffer+= key;
 				}
 				
@@ -297,33 +256,28 @@
 		hasOpWaiting=false;
 		app.op='';
 	}
+
 </script>
 
-        <footer>
-            <div class="sub-footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6 col-lg-6">
-                            <div class="wow fadeInLeft" data-wow-delay="0.1s">
-                                <div class="text-center visible-sm">
-                                    <p>
-                                        ©Copyright 2020 - Elvis ansim
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-6">
-                            <div class="wow fadeInRight" data-wow-delay="0.1s">
-                                <div class="text-center visible-sm">
-                                    <p class="btn btn-primary border shadow">
-                                        <a class="btn btn-primary" href="https://github.com/ElvisAns">
-                                            Take a look on my github profile @ElvisAns
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<footer>
+<div class="sub-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-md-6 col-lg-6">
+            <div class="wow fadeInLeft" data-wow-delay="0.1s">
+              <div class="text-center visible-sm">
+                <p>&copy;Copyright 2020 - Elvis ansim</p>
+              </div>
             </div>
-        </footer>
+          </div>
+          <div class="col-sm-6 col-md-6 col-lg-6">
+            <div class="wow fadeInRight" data-wow-delay="0.1s">
+              <div class="text-center visible-sm">
+                <p class="btn btn-primary border shadow"><a  href="https://github.com/ElvisAns" class="btn btn-primary">Take a look on my github profile @ElvisAns</a></p>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+ </div>
+</footer>
