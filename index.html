@@ -1,66 +1,87 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>simple calculador</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script type="text/javascript" src="assets/js/vue.js"></script>
-	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="assets/css/font-awesome/css/font-awesome.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/theme.css">
-	
-	<meta property="og:title" content="Simple calculatrice">
-	<meta property="og:type" content="website">
-	<meta property="fb:app_id" content="246270049874183">
-	<meta property="og:description" content="Un simple online tool for making calculation every where">
-	<meta property="og:image" content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcompass1.org%2Fresources%2Fcalculators%2F&psig=AOvVaw0iXGmiXfw66YpwdhbfEPiy&ust=1592191487552000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPDosI2tgOoCFQAAAAAdAAAAABAD">
-	<meta property="og:url" content="https://simplecalculador.netlify.app/">
+	<head>
+		<title>simple calculador</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+			<script type="text/javascript" src="assets/js/vue.js"></script>
+			<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+				<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+				<link rel="stylesheet" type="text/css" href="assets/css/font-awesome/css/font-awesome.css">
+					<link rel="stylesheet" type="text/css" href="assets/css/theme.css">
+						<meta property="og:title" content="Simple calculatrice">
+							<meta property="og:type" content="website">
+								<meta property="fb:app_id" content="246270049874183">
+									<meta property="og:description" content="Un simple online tool for making calculation every where">
+										<meta property="og:image" content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcompass1.org%2Fresources%2Fcalculators%2F&psig=AOvVaw0iXGmiXfw66YpwdhbfEPiy&ust=1592191487552000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPDosI2tgOoCFQAAAAAdAAAAABAD">
+											<meta property="og:url" content="https://simplecalculador.netlify.app/">
+												<link rel="shortcut icon"  href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcompass1.org%2Fresources%2Fcalculators%2F&psig=AOvVaw0iXGmiXfw66YpwdhbfEPiy&ust=1592191487552000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPDosI2tgOoCFQAAAAAdAAAAABAD">
+												</head>
+												<body>
+													<div class="container">
+														<div class="row">
+															<div class = "col">
+																<div class="calculator" id="app">
+																	<div class="calculator-container">
+																		<input class="calculator-screen" v-model="buffer" type="text"  value="0" disabled/>
+																		<p class="display_info">{{ modeX }}</p>
+																	</div>
+																	<div class="calculator-keys">
+																		<button @click="click">7</button>
+																		<button @click="click">8</button>
+																		<button @click="click">9</button>
+																		<button @click="times">&times</button>
+																	</br>
+																	<button v-on:click="click">4</button>
+																	<button v-on:click="click">5</button>
+																	<button v-on:click="click">6</button>
+																	<button v-on:click="minus">-</button>
+																</br>
+																<button v-on:click="click">1</button>
+																<button v-on:click="click">2</button>
+																<button v-on:click="click">3</button>
+																<button v-on:click="division">&divide;</button>
+															</br>
+															<button v-on:click="click">0</button>
+															<button v-on:click="click">.</button>
+															<button v-on:click="egal">=</button>
+															<button v-on:click="plus">+</button>
+														</br>
+														<button v-on:click="bin">BIN</button>
+														<button v-on:click="hex">HEX</button>
+														<button v-on:click="del">Del</button>
+														<button v-on:click="clr">CLR</button>
+													</div>
+												</div>
+											</div>
+										</div>
 
-   	<link rel="shortcut icon"  href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcompass1.org%2Fresources%2Fcalculators%2F&psig=AOvVaw0iXGmiXfw66YpwdhbfEPiy&ust=1592191487552000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPDosI2tgOoCFQAAAAAdAAAAABAD">
-
-</head>
-
-<body>
-
-
-	<div class="calculator" id="app">
-		<div class="calculator-container">
-			<input class="calculator-screen" v-model="buffer" type="text"  value="0" disabled/>
-			<p class="display_info">{{ modeX }}</p>
-		</div>
-				<div class="calculator-keys">
-								<button @click="click">7</button>
-								<button @click="click">8</button>
-								<button @click="click">9</button>
-								<button @click="times">&times</button>
-								</br>
-								<button v-on:click="click">4</button>
-								<button v-on:click="click">5</button>
-								<button v-on:click="click">6</button>
-								<button v-on:click="minus">-</button>
-								</br>
-								<button v-on:click="click">1</button>
-								<button v-on:click="click">2</button>
-								<button v-on:click="click">3</button>
-								<button v-on:click="division">&divide;</button>
-								</br>
-
-								<button v-on:click="click">0</button>
-								<button v-on:click="click">.</button>
-								<button v-on:click="egal">=</button>
-								<button v-on:click="plus">+</button>
-
-								</br>
-								<button v-on:click="bin">BIN</button>
-								<button v-on:click="hex">HEX</button>
-								<button v-on:click="del">Del</button>
-								<button v-on:click="clr">CLR</button>
-			
-				</div>
-	</div>
-</body>
-</html>
-
+								<footer>
+									<div class="sub-footer">
+										<div class="container">
+											<div class="row">
+												<div class="col-sm-6 col-md-6 col-lg-6">
+													<div class="wow fadeInLeft" data-wow-delay="0.1s">
+														<div class="text-center visible-sm">
+															<p>&copy;Copyright 2020 - Elvis ansim</p>
+														</div>
+													</div>
+												</div>
+												<div class="col-sm-6 col-md-6 col-lg-6">
+													<div class="wow fadeInRight" data-wow-delay="0.1s">
+														<div class="text-center visible-sm">
+															<p class="btn btn-primary border shadow">
+																<a  href="https://github.com/ElvisAns" class="btn btn-primary">Take a look on my github profile @ElvisAns</a>
+															</p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</footer>
+									</div>
+								</body>
+							</html>
 <script type="text/javascript">
 
 
@@ -88,7 +109,8 @@
 					hasOpWaiting=false; 
 				}
 
-				if(this.buffer.length<13 || !hasOpWaiting) {
+				if(this.buffer.length
+								<13 || !hasOpWaiting) {
 					this.buffer+= key;
 				}
 				
@@ -257,26 +279,3 @@
 	}
 
 </script>
-
-<footer>
-<div class="sub-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6 col-md-6 col-lg-6">
-            <div class="wow fadeInLeft" data-wow-delay="0.1s">
-              <div class="text-center visible-sm">
-                <p>&copy;Copyright 2020 - Elvis ansim</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-6 col-lg-6">
-            <div class="wow fadeInRight" data-wow-delay="0.1s">
-              <div class="text-center visible-sm">
-                <p class="btn btn-primary border shadow"><a  href="https://github.com/ElvisAns" class="btn btn-primary">Take a look on my github profile @ElvisAns</a></p>
-              </div>
-            </div>
-          </div>
-        </div>  
-      </div>
- </div>
-</footer>
